@@ -112,6 +112,7 @@ public class Agent implements IAgent {
 	 * 
 	 */
 	public void startup() {
+		DebugLog.debug("Starting agent with options %s", options);
 		try {
 			String sessionId = options.getSessionId();
 			if (sessionId == null) {
@@ -132,6 +133,7 @@ public class Agent implements IAgent {
 	 * Shutdown the agent again.
 	 */
 	public void shutdown() {
+		DebugLog.debug("Shutting down agent");
 		try {
 			if (options.getDumpOnExit()) {
 				output.writeExecutionData(false);

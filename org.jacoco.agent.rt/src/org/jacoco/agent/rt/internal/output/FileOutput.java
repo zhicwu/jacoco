@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import org.jacoco.agent.rt.internal.DebugLog;
 import org.jacoco.core.data.ExecutionDataWriter;
 import org.jacoco.core.runtime.AgentOptions;
 import org.jacoco.core.runtime.RuntimeData;
@@ -52,8 +53,10 @@ public class FileOutput implements IAgentOutput {
 	public void writeExecutionData(final boolean reset) throws IOException {
 		final OutputStream output = openFile();
 		try {
+			DebugLog.debug("Writing data to file %s", destFile);
 			final ExecutionDataWriter writer = new ExecutionDataWriter(output);
 			data.collect(writer, writer, reset);
+			DebugLog.debug("Execution data written");
 		} finally {
 			output.close();
 		}
@@ -64,9 +67,12 @@ public class FileOutput implements IAgentOutput {
 	}
 
 	private OutputStream openFile() throws IOException {
+		DebugLog.debug("Opening file %s", destFile);
 		final FileOutputStream file = new FileOutputStream(destFile, append);
 		// Avoid concurrent writes from different agents running in parallel:
+		DebugLog.debug("Akquiring lock on file %s", destFile);
 		file.getChannel().lock();
+		DebugLog.debug("Got lock on file %s", destFile);
 		return file;
 	}
 
