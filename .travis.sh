@@ -51,6 +51,9 @@ case "$JDK" in
 9-ea)
   install_jdk $JDK9_EA_URL
   ;;
+9-jigsaw-ea)
+  install_jdk $JDK9_JIGSAW_EA_URL
+  ;;
 esac
 
 # Do not use "~/.mavenrc" set by Travis (https://github.com/travis-ci/travis-ci/issues/3893),
@@ -79,7 +82,7 @@ case "$JDK" in
 8 | 8-ea)
   mvn -V -B -e verify -Dbytecode.version=1.8
   ;;
-9-ea)
+9-ea | 9-jigsaw-ea)
   # see https://bugs.openjdk.java.net/browse/JDK-8131041 about "java.locale.providers"
   # TODO(Godin): maven-javadoc-plugin doesn't work well due to modularization of JDK 9 - skip it and hence distribution
   mvn -V -B -e verify -Dbytecode.version=1.9 \

@@ -18,10 +18,12 @@ env:
   - JDK=8
   - JDK=8-ea
   - JDK=9-ea
+  - JDK=9-jigsaw-ea
 
 matrix:
   allow_failures:
     - env: JDK=8-ea
     - env: JDK=9-ea
+    - env: JDK=9-jigsaw-ea
 
 script: ./.travis.sh
