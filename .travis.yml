@@ -12,12 +12,12 @@ cache:
     - '$HOME/.m2/repository'
 
 env:
-  - JDK=5
-  - JDK=6
-  - JDK=7
-  - JDK=8
-  - JDK=8-ea
-  - JDK=9-ea
+#  - JDK=5
+#  - JDK=6
+#  - JDK=7
+#  - JDK=8
+#  - JDK=8-ea
+#  - JDK=9-ea
   - JDK=9-jigsaw-ea
 
 matrix:
