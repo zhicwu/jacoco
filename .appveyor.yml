@@ -4,7 +4,7 @@ install:
   - SET PATH=%CD%\apache-maven-3.3.9\bin;%PATH%
 
 build_script:
-  - mvn -V -B -e verify -Dbytecode.version=1.8
+  - mvn -V -B -e verify -Pno-java8-validation -Djdk.version=1.6 --toolchains=.travis\appveyor-toolchains.xml
 
 artifacts:
   - path: jacoco\target\*.zip
